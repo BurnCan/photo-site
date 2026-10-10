@@ -1,8 +1,8 @@
 # WebPrep — Photo Web Downscaler V1
 
 WebPrep creates reduced-resolution web JPEGs from immutable master photographs.
-V1 is a CLI and reusable processing library. It does not include a GUI, thumbnails,
-a database, Instagram integration, authentication, or publishing.
+WebPrep includes a desktop GUI, CLI, and reusable processing library. It does not
+include thumbnails, a database, Instagram integration, authentication, or publishing.
 
 ## Setup
 
@@ -15,13 +15,6 @@ git clone https://github.com/BurnCan/photo-site.git
 cd photo-site
 ```
 
-Until PR #1 is merged, switch to the branch containing WebPrep before continuing:
-
-```bash
-git switch webprep-v1
-```
-
-After WebPrep is merged into `main`, the branch-switch step is unnecessary.
 Run the remaining setup and usage commands from the `photo-site` directory.
 Create an isolated Python environment:
 
@@ -45,6 +38,33 @@ source .venv/bin/activate
 pip install -r requirements.txt
 python -m pytest -q
 ```
+
+## Desktop GUI
+
+Launch from the project directory with the virtual environment active:
+
+```bash
+python -m webprep.gui
+```
+
+Add one or more source folders, choose an output folder (or leave it blank for
+`<shared parent>/web`), and set the maximum edge and JPEG quality. **Preview**
+validates and lists planned changes without writing files. **Process images**
+creates the web copies. Existing outputs are skipped unless overwrite is enabled;
+replacing them requires confirmation. Progress, warnings, errors, and a summary
+appear in the window. Processing runs in a background thread so the window stays
+responsive. Wait for the batch to finish before closing the window.
+
+Tkinter is included with standard Windows Python. On Ubuntu/WSL, install it with:
+
+```bash
+sudo apt install python3-tk
+```
+
+WSL needs WSLg GUI support (available on supported Windows 10/11 installations).
+Launch from Ubuntu, and use Linux paths such as `/mnt/c/Users/weird/Desktop/Images`.
+The same source/output safety rules and image processing behavior apply to both
+interfaces. Source folders and the output folder must not contain one another.
 
 ## Usage
 
@@ -142,8 +162,8 @@ photos = scan_sources(layout)
 results = process_batch(photos[:10], layout, Settings(), dry_run=True)
 ```
 
-A future GUI can select a subset before processing, consume result dimensions and
-warnings, and add a manifest without changing discovery into an automatic writer.
+`gui.py` uses the same batch API and sends progress events to the Tk event loop
+through a queue; the processing library has no GUI dependency.
 
 ## Limitations
 
