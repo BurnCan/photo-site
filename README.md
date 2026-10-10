@@ -115,8 +115,9 @@ preserved using Lanczos downsampling; small images are never upscaled. Size acce
 1–65535; quality accepts 1–95. EXIF orientation is applied before resizing.
 
 Valid embedded ICC profiles are transformed to sRGB using ImageCms, rather than
-merely relabeled. Unprofiled RGB and grayscale are assumed to be sRGB; unprofiled
-CMYK uses Pillow's approximate conversion and reports a warning. Malformed or
+merely relabeled. Unprofiled RGB, grayscale, and palette images use the default
+sRGB profile without a missing-profile warning. All output JPEGs embed that profile.
+Unprofiled CMYK uses Pillow's approximate conversion and reports a warning. Malformed or
 incompatible profiles cause a per-image `ERROR` and do not interrupt other images.
 Alpha is preserved through color conversion then composited over white. The
 background is configurable through the library's `Settings` model.
