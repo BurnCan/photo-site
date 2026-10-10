@@ -1,0 +1,17 @@
+{
+  "result": "PASS",
+  "source_hash_size_mtime_unchanged": true,
+  "repeat_run_skipped": 3,
+  "dry_run_unchanged": true,
+  "outputs": [
+    "web/Balloon Pop/image1.jpg",
+    "web/Balloon Pop/image2.jpg",
+    "web/Light Trails/image3.jpg"
+  ],
+  "cli_reports": [
+    "Output library: /tmp/webprep-integration-doownx04/Photos/web\nCREATED      /tmp/webprep-integration-doownx04/Photos/Balloon Pop/image1.tif\n             -> /tmp/webprep-integration-doownx04/Photos/web/Balloon Pop/image1.jpg\n             WARNING: No ICC profile: assuming sRGB for RGB/grayscale; unprofiled CMYK uses Pillow fallback\nCREATED      /tmp/webprep-integration-doownx04/Photos/Balloon Pop/image2.jpg\n             -> /tmp/webprep-integration-doownx04/Photos/web/Balloon Pop/image2.jpg\n             WARNING: No ICC profile: assuming sRGB for RGB/grayscale; unprofiled CMYK uses Pillow fallback\nCREATED      /tmp/webprep-integration-doownx04/Photos/Light Trails/image3.tif\n             -> /tmp/webprep-integration-doownx04/Photos/web/Light Trails/image3.jpg\n             WARNING: No ICC profile: assuming sRGB for RGB/grayscale; unprofiled CMYK uses Pillow fallback\n\nProcessing complete.\nSource directories: 2\nImages discovered: 3\nCreated: 3\nWould Create: 0\nSkipped: 0\nCollision: 0\nError: 0\nOutput library: /tmp/webprep-integration-doownx04/Photos/web\n",
+    "Output library: /tmp/webprep-integration-doownx04/Photos/web\nSKIPPED      /tmp/webprep-integration-doownx04/Photos/Balloon Pop/image1.tif\n             -> /tmp/webprep-integration-doownx04/Photos/web/Balloon Pop/image1.jpg\n             output already exists\nSKIPPED      /tmp/webprep-integration-doownx04/Photos/Balloon Pop/image2.jpg\n             -> /tmp/webprep-integration-doownx04/Photos/web/Balloon Pop/image2.jpg\n             output already exists\nSKIPPED      /tmp/webprep-integration-doownx04/Photos/Light Trails/image3.tif\n             -> /tmp/webprep-integration-doownx04/Photos/web/Light Trails/image3.jpg\n             output already exists\n\nProcessing complete.\nSource directories: 2\nImages discovered: 3\nCreated: 0\nWould Create: 0\nSkipped: 3\nCollision: 0\nError: 0\nOutput library: /tmp/webprep-integration-doownx04/Photos/web\n",
+    "Output library: /tmp/webprep-integration-doownx04/Photos/web\nWOULD CREATE /tmp/webprep-integration-doownx04/Photos/Balloon Pop/image1.tif\n             -> /tmp/webprep-integration-doownx04/Photos/web/Balloon Pop/image1.jpg\n             would replace existing output\nWOULD CREATE /tmp/webprep-integration-doownx04/Photos/Balloon Pop/image2.jpg\n             -> /tmp/webprep-integration-doownx04/Photos/web/Balloon Pop/image2.jpg\n             would replace existing output\nWOULD CREATE /tmp/webprep-integration-doownx04/Photos/Light Trails/image3.tif\n             -> /tmp/webprep-integration-doownx04/Photos/web/Light Trails/image3.jpg\n             would replace existing output\n\nDry run complete \u2014 no files written.\nSource directories: 2\nImages discovered: 3\nCreated: 0\nWould Create: 3\nSkipped: 0\nCollision: 0\nError: 0\nOutput library: /tmp/webprep-integration-doownx04/Photos/web\n"
+  ],
+  "pytest": "46 passed"
+}
