@@ -1,4 +1,5 @@
 import hashlib
+from io import BytesIO
 import os
 from pathlib import Path
 import subprocess
@@ -234,3 +235,23 @@ def test_exclusive_publication_race(tmp_path,monkeypatch):
     output=tmp_path/'web'/'shoot'/'x.jpg'
     assert output.read_bytes()==b'other writer output'
     assert not list(output.parent.glob('.webprep-*'))
+
+
+@pytest.mark.parametrize('mode,color', [('RGB', (100,20,30)), ('L', 100), ('RGBA', (10,20,30,128)), ('LA', (100,128)), ('P', 0)])
+def test_default_srgb_profile_without_warning(tmp_path, mode, color):
+    root = tmp_path / 'shoot'
+    photo(root / 'x.png', mode=mode, color=color)
+    result = run(root)[0]
+    assert result.status == 'CREATED'
+    assert result.warnings == []
+    with Image.open(result.job.destination) as image:
+        profile = ImageCms.ImageCmsProfile(BytesIO(image.info['icc_profile']))
+        assert 'sRGB' in ImageCms.getProfileDescription(profile)
+
+
+def test_unprofiled_cmyk_retains_specific_warning(tmp_path):
+    root = tmp_path / 'shoot'
+    photo(root / 'x.tif', mode='CMYK', color=(0,255,255,0))
+    result = run(root)[0]
+    assert result.status == 'CREATED'
+    assert result.warnings == ['No CMYK ICC profile: using Pillow approximate conversion to sRGB']

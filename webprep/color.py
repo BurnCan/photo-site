@@ -31,7 +31,12 @@ def to_srgb(image: Image.Image, profile: bytes | None, background=(255, 255, 255
         if pixels.mode == 'LAB':
             raise ColorError('Unprofiled LAB has no safe color interpretation')
         rgb = pixels.convert('RGB')
-        warnings.append('No ICC profile: assuming sRGB for RGB/grayscale; unprofiled CMYK uses Pillow fallback')
+        if pixels.mode == 'CMYK':
+            warnings.append('No CMYK ICC profile: using Pillow approximate conversion to sRGB')
+        else:
+            # Treat untagged RGB/grayscale as sRGB using the default profile.
+            # Convert grayscale to RGB before applying the RGB profile.
+            rgb = ImageCms.profileToProfile(rgb, SRGB_PROFILE, SRGB_PROFILE, outputMode='RGB')
     if alpha is not None:
         rgb = Image.composite(rgb, Image.new('RGB', rgb.size, background), alpha)
     return rgb, warnings
