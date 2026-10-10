@@ -7,6 +7,7 @@ from tkinter import filedialog, messagebox, ttk
 from tkinter.scrolledtext import ScrolledText
 
 from . import Settings, make_layout, process_batch, scan_sources
+from .models import DEFAULT_SIZE, DEFAULT_QUALITY
 
 
 def run_batch(sources, output, settings, overwrite, dry_run, events):
@@ -54,8 +55,8 @@ class App:
         self.button(output_row, 'Browse…', self.choose_output).pack(side='left', padx=(8, 0))
         settings_row = ttk.Frame(frame)
         settings_row.pack(fill='x', pady=12)
-        self.size = tk.StringVar(value='2048')
-        self.quality = tk.StringVar(value='82')
+        self.size = tk.StringVar(value=str(DEFAULT_SIZE))
+        self.quality = tk.StringVar(value=str(DEFAULT_QUALITY))
         for label, variable, maximum in [('Maximum edge (px)', self.size, 65535), ('JPEG quality', self.quality, 95)]:
             ttk.Label(settings_row, text=label).pack(side='left', padx=(0, 6))
             spin = ttk.Spinbox(settings_row, from_=1, to=maximum, textvariable=variable, width=8)

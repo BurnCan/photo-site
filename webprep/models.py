@@ -2,7 +2,7 @@
 from dataclasses import dataclass, field
 from pathlib import Path
 
-DEFAULT_SIZE = 2048
+DEFAULT_SIZE = 1600
 DEFAULT_QUALITY = 82
 SUPPORTED_EXTENSIONS = frozenset({'.jpg', '.jpeg', '.png', '.tif', '.tiff'})
 

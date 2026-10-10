@@ -1,7 +1,7 @@
 """CLI parsing and human-readable reporting."""
 import argparse
 from collections import Counter
-from .models import SafetyError, Settings
+from .models import DEFAULT_SIZE, SafetyError, Settings
 from .paths import make_layout
 from .scanner import scan_sources
 from .batch import process_batch
@@ -18,7 +18,7 @@ def main(argv=None):
         epilog='Example: python webprep.py "D:\\Photos\\Balloon Pop" "D:\\Photos\\Light Trails" --dry-run')
     parser.add_argument('sources', nargs='+', help='source directories (quote paths containing spaces)')
     parser.add_argument('--output', help='common output library; defaults to shared parent/web')
-    parser.add_argument('--size', type=int, default=2048, help='maximum long edge, 1–65535 pixels (default: 2048)')
+    parser.add_argument('--size', type=int, default=DEFAULT_SIZE, help=f'maximum long edge, 1–65535 pixels (default: {DEFAULT_SIZE})')
     parser.add_argument('--quality', type=int, default=82, help='JPEG quality, 1–95 (default: 82)')
     parser.add_argument('--overwrite', action='store_true', help='replace validated existing web copies')
     parser.add_argument('--dry-run', action='store_true', help='preflight and report without writing or decoding images')
