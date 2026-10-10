@@ -109,7 +109,8 @@ image data or ICC profiles until actual processing.
 
 ## Image processing
 
-Defaults: **2048-pixel maximum long edge, JPEG quality 82, sRGB**. Aspect ratios are
+Defaults: **1600-pixel maximum long edge, JPEG quality 82, sRGB**. A landscape 3:2
+photo becomes **1600 × 1067**; a portrait becomes **1067 × 1600**. Aspect ratios are
 preserved using Lanczos downsampling; small images are never upscaled. Size accepts
 1–65535; quality accepts 1–95. EXIF orientation is applied before resizing.
 

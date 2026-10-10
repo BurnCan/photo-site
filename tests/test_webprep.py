@@ -19,8 +19,8 @@ def run(root, **kwargs):
     return process_batch(scan_sources(layout), layout, Settings(size=32), **kwargs)
 
 
-@pytest.mark.parametrize('size,expected', [((6000,4000),(2048,1365)), ((4000,6000),(1365,2048)),
-    ((3000,3000),(2048,2048)), ((1600,1000),(1600,1000)), ((10000,1),(2048,1))])
+@pytest.mark.parametrize('size,expected', [((6000,4000),(1600,1067)), ((4000,6000),(1067,1600)),
+    ((3000,3000),(1600,1600)), ((1600,1000),(1600,1000)), ((10000,1),(1600,1))])
 def test_resize(tmp_path, size, expected):
     root = tmp_path/'shoot'
     photo(root/'x.png', size=size)
