@@ -7,7 +7,23 @@ a database, Instagram integration, authentication, or publishing.
 ## Setup
 
 Requires Python **3.12 or newer**. Runtime dependency: Pillow (including ImageCms).
-pytest is included for verification.
+pytest is included for verification. Install [Git](https://git-scm.com/downloads)
+if it is not already available, then clone the repository and enter its directory:
+
+```bash
+git clone https://github.com/BurnCan/photo-site.git
+cd photo-site
+```
+
+Until PR #1 is merged, switch to the branch containing WebPrep before continuing:
+
+```bash
+git switch webprep-v1
+```
+
+After WebPrep is merged into `main`, the branch-switch step is unnecessary.
+Run the remaining setup and usage commands from the `photo-site` directory.
+Create an isolated Python environment:
 
 ```bash
 python -m venv .venv
